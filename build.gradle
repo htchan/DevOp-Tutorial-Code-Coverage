@@ -1,0 +1,87 @@
+plugins {
+	id 'java'
+	id 'jacoco'
+	id 'application'
+}
+
+apply plugin: 'jacoco'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+jar {
+    baseName = 'calculator'
+    version =  '1.0'
+    destinationDir = file("./")
+    manifest {
+        attributes  'Implementation-Title': baseName,
+                    'Implementation-Version': version,
+                    'Main-Class': 'example.Main'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+mainClassName = 'example.Main'
+
+repositories {
+    mavenCentral()
+}
+
+clean {
+    delete "src/test/java/library/ConditionCoverage.java"
+    delete "src/test/java/library/Crash.java"
+    delete "src/test/java/library/DecisionCoverage.java"
+    delete "src/test/java/library/FullTest.java"
+    delete "src/test/java/library/FunctionalCoverage.java"
+    delete "src/test/java/library/StatementCoverage.java"
+}
+
+task crash(type: Copy) {
+    from file("dev-ops/Crash.java")
+    into file("src/test/java/library")
+}
+
+task conditionCoverage(type: Copy) {
+    from file("dev-ops/ConditionCoverage.java")
+    into file("src/test/java/library")
+}
+
+task statementCoverage(type: Copy) {
+    from file("dev-ops/StatementCoverage.java")
+    into file("src/test/java/library")
+}
+
+task functionalCoverage(type: Copy) {
+    from file("dev-ops/FunctionalCoverage.java")
+    into file("src/test/java/library")
+}
+
+task edgeCoverage(type: Copy) {
+    from file("dev-ops/DecisionCoverage.java")
+    into file("src/test/java/library")
+}
+
+task fullCoverage(type: Copy) {
+    from file("dev-ops/FullTest.java")
+    into file("src/test/java/library")
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/net.sourceforge.htmlunit/htmlunit
+    compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.31'
+
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHTML")
+    }
+}
+
+jacoco{
+	toolVersion = "0.8.5"
+}
