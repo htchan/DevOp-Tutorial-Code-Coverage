@@ -42,3 +42,7 @@ run `./gradlew clean crash test`, it will run the crash test case to show even a
 ## Easter Egg
 ----
 run `./gradlew clean run`, the last line of program will print "Devops is interesting !!!!"
+
+
+
+The tutorial is post on (medium)[https://medium.com/@jacky19980619/introduction-to-code-coverage-with-jacoco-2c2c7ba307c3]
