@@ -3,9 +3,9 @@
 Chan Ho Ting, Martin Gabrielsen
 
 ## Introduction
-Testing is important in developing a system. It helps the developer to ensure that functions work well by providing test cases and asserting its result. This article will introduce what is code coverage, based on java development environment and Gradle. This tutorial will explain different types of code coverage criteria and discuss the usage of code coverage.
+Testing is important in DevOps. From continue integration to continue deployment, developer should run the test case to make sure that the functions in new implemented or bugs solved version work well by providing test cases and asserting its result. One of the criteria to define a test is good enough or not is code coverage and this article will introduce what is code coverage, based on java development environment and Gradle. This tutorial will explain different types of code coverage criteria and discuss the usage of code coverage.
 
-The example used in this tutorial is a basic linked list implementation. The code used in this tutorial can be downloaded from [here](github).
+The example used in this tutorial is a basic linked list implementation. The code used in this tutorial can be downloaded from [here](https://github.com/htchan/DevOp-Tutorial-Code-Coverage).
 
 We start with introducing JUnit and Jacoco which help further explanation on code coverage.
 
@@ -80,7 +80,8 @@ and lines with 3 colors :
 We will discuss how the "executed" decided in the following.
 
 ## Functional Coverage
-Functional Coverage is the criteria for checking if a function has been called in a test or not. It calculates in Number_of_Functions_Called / Total_Number_of_function * 100%.
+Functional Coverage is the criteria for checking if a function has been called in a test or not. The formula is :
+![statement coverage formula](./pictures/statement-coverage-formula.PNG)
 
 Here is the test report on `library.LinkedList` having 100% functional coverage.
 
@@ -108,7 +109,8 @@ In the test report, you can see that there are many red lines in the test report
 You can run `./gradlew clean functionalCoverage test jacocoTestReport`
 
 ## Statement Coverage
-Statement coverage is the criteria that checks all statements in a test case. The coverage is calculate in Lines_of_Code_Executed / Total_Lines_of_Code * 100%. 
+Statement coverage is the criteria that checks all statements in a test case. The formula is :
+![statement coverage formula](./pictures/statement-coverage-formula.PNG)
 
 Here is the test report of on `get(int)` function of `library.LinkedList` having 100% statement coverage
 
@@ -139,7 +141,9 @@ You can see that the same function tested in the functional coverage does not ac
 You can run `./gradlew clean statementCoverage test jacocoTestReport` to try it yourself.
 
 ## Edge Coverage
-Edge Coverage focuses on each edge in a control flow graph of function. Take `toString()` as an example. The function is 
+Edge Coverage focuses on each edge in a control flow graph of function. The formula is :
+![edge coverage formula](./pictures/edge-coverage-formula.PNG)
+Take `toString()` as an example. The function is 
 
 ```java
 public String toString() {
@@ -189,7 +193,12 @@ As edge coverage focuses on all edges. it will have all green lines and green di
 You can run `./gradlew clean edgeCoverage test jacocoTestReport` to get the result.
 
 ## Condition Coverage
-Condition coverage focuses on the predicate inside the function. Take `remove(Object)` as an example. The code of `remove(Object)` is
+Condition coverage focuses on the predicate inside the function. Take `remove(Object)` as an example. The formula is :
+![condition coverage formula](./pictures/condition-coverage-formula.PNG)
+
+\* executed* means the predicates have been evaluated to both true and false.
+
+The code of `remove(Object)` is
 
 ```java
 public Object remove(Object obj) {
