@@ -27,43 +27,10 @@ repositories {
     mavenCentral()
 }
 
-clean {
-    delete "src/test/java/library/ConditionCoverage.java"
-    delete "src/test/java/library/Crash.java"
-    delete "src/test/java/library/DecisionCoverage.java"
-    delete "src/test/java/library/FullTest.java"
-    delete "src/test/java/library/FunctionalCoverage.java"
-    delete "src/test/java/library/StatementCoverage.java"
-}
-
-task crash(type: Copy) {
-    from file("dev-ops/Crash.java")
-    into file("src/test/java/library")
-}
-
-task conditionCoverage(type: Copy) {
-    from file("dev-ops/ConditionCoverage.java")
-    into file("src/test/java/library")
-}
-
-task statementCoverage(type: Copy) {
-    from file("dev-ops/StatementCoverage.java")
-    into file("src/test/java/library")
-}
-
-task functionalCoverage(type: Copy) {
-    from file("dev-ops/FunctionalCoverage.java")
-    into file("src/test/java/library")
-}
-
-task edgeCoverage(type: Copy) {
-    from file("dev-ops/DecisionCoverage.java")
-    into file("src/test/java/library")
-}
-
-task fullCoverage(type: Copy) {
-    from file("dev-ops/FullTest.java")
-    into file("src/test/java/library")
+test {
+    if (project.hasProperty('excludeTests')) {
+        exclude project.property('excludeTests')
+    }
 }
 
 dependencies {

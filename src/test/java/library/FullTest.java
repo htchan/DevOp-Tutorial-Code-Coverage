@@ -60,6 +60,24 @@ public class FullTest {
         assertEquals(2, l.length());
     }
     @Test
+    public void testPrivateLength() {
+        LinkedList l = new LinkedList();
+        assertEquals(null, l.get(0));
+        l.add("abc");
+        assertEquals("abc", l.get(0));
+        l.add("def");
+        assertEquals("def", l.get(1));
+    }
+    @Test
+    public void testProtectedLength() {
+        LinkedList l = new LinkedList();
+        assertEquals(0, l.protectedLength());
+        l.add("abc");
+        assertEquals(1, l.protectedLength());
+        l.add("def");
+        assertEquals(2, l.protectedLength());
+    }
+    @Test
     public void testToString() {
         LinkedList l = new LinkedList();
         assertEquals("[]", l.toString());

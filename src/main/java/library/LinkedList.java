@@ -49,7 +49,7 @@ public class LinkedList {
         return null;
     }
     public Object get(int i) {
-        if ((i < 0) || (i >= length())) {
+        if ((i < 0) || (i >= privateLength())) {
             return null;
         }
         Node pointer = startNode;
@@ -57,6 +57,30 @@ public class LinkedList {
             pointer = pointer.next;
         }
         return pointer.content;
+    }
+    private int privateLength() {
+        if (startNode == null) {
+            return 0;
+        }
+        Node pointer = startNode;
+        int i = 1;
+        while (pointer.next != null) {
+            pointer = pointer.next;
+            ++i;
+        }
+        return i;
+    }
+    protected int protectedLength() {
+        if (startNode == null) {
+            return 0;
+        }
+        Node pointer = startNode;
+        int i = 1;
+        while (pointer.next != null) {
+            pointer = pointer.next;
+            ++i;
+        }
+        return i;
     }
     public int length() {
         if (startNode == null) {

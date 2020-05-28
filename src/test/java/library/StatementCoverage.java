@@ -13,8 +13,7 @@ public class StatementCoverage {
         LinkedList l = new LinkedList();
         l.add("abc");
         l.add("def");
-        l.add("ghi");
-        assertEquals(null, l.get(-1));    // test on line 51 - 54
+        //assertEquals(null, l.get(-1));    // test on line 51 - 54
         assertEquals("def", l.get(1));    // test on line 55 - 59
     }
 }

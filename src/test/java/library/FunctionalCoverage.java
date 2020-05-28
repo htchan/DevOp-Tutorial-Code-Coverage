@@ -9,7 +9,7 @@ import org.junit.After;
 public class FunctionalCoverage {
     // call all function once and make sure it works fine is already 100% functional coverage
     @Test
-    public void testAllFunction() {
+    public void testFunctions() {
         LinkedList l = new LinkedList();        // test constructor
         l.add("abc");                           // test add(Object)
         assertEquals(1, l.length());            // test length()
@@ -17,6 +17,7 @@ public class FunctionalCoverage {
         assertEquals("[abc]", l.toString());    // test toString()
         Object obj = l.remove("abc");           // test remove()
         assertEquals("abc", obj);
-        assertEquals(0, l.length());
+        assertEquals(0, l.protectedLength());
+
     }
 }
