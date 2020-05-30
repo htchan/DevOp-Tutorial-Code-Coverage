@@ -74,7 +74,7 @@ jacoco{
 }
 ```
 
-You can type `gradle clean test jacocoTestReport` in console under the base project directory to generate the jacoco test coverage report. 
+You can type `gradle clean test jacocoTestReport` in console under the base project directory to generate the jacoco test coverage report and find the report in `build/jacocoHTML/index.html`. 
 
 Example Report : 
 
